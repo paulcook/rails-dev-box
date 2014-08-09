@@ -1,10 +1,9 @@
-# A Virtual Machine for Ruby on Rails Core Development
+# A Virtual Machine for Ruby on Rails Development
 
 ## Introduction
 
-This project automates the setup of a development environment for working on Ruby on Rails itself. Use this virtual machine to work on a pull request with everything ready to hack and run the test suites.
+This project automates the setup of a development environment for working on Ruby on Rails. Use this virtual machine to work on a pull request with everything ready to hack and run the test suites.
 
-**Please note this virtual machine is not designed to be used for Rails application development.**
 
 ## Requirements
 
@@ -12,11 +11,16 @@ This project automates the setup of a development environment for working on Rub
 
 * [Vagrant 1.1+](http://vagrantup.com) (not a Ruby gem)
 
+## Pre VM Build
+
+1. Install VirtualBox (or parallels)
+2. Install Vagrant
+
 ## How To Build The Virtual Machine
 
 Building the virtual machine is this easy:
 
-    host $ git clone https://github.com/rails/rails-dev-box.git
+    host $ git clone https://github.com/paulcook/rails-dev-box.git
     host $ cd rails-dev-box
     host $ vagrant up
 
@@ -34,6 +38,24 @@ If the base box is not present that command fetches it first. The setup itself t
     vagrant@rails-dev-box:~$
 
 Port 3000 in the host computer is forwarded to port 3000 in the virtual machine. Thus, applications running in the virtual machine can be accessed via localhost:3000 in the host computer.
+
+## Next Steps: Rails Project setup
+
+    host $ git clone git@github.com:Taivara/RingSide.git
+    host $ vagrant ssh
+    vagrant@rails-dev-box:~$ cd /vagrant/RingSide
+    vagrant@rails-dev-box:~$ bundle
+    vagrant@rails-dev-box:~$ rails s
+    => Booting WEBrick
+    => Rails 4.1.4 application starting in development on http://0.0.0.0:3000
+    => Run `rails server -h` for more startup options
+    => Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+    => Ctrl-C to shutdown server
+    [2014-08-09 17:17:37] INFO  WEBrick 1.3.1
+    [2014-08-09 17:17:37] INFO  ruby 2.1.1 (2014-02-24) [i686-linux]
+    [2014-08-09 17:17:37] INFO  WEBrick::HTTPServer#start: pid=3130 port=3000
+
+After firing up the rails server you should be able to get the rails project home page by going to localhost:3000 on your host machine.
 
 ## What's In The Box
 
