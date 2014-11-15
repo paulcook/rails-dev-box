@@ -156,3 +156,11 @@ exec { "${as_vagrant} 'gem install bundler --no-rdoc --no-ri'":
 exec { 'update-locale':
   command => 'update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8'
 }
+
+# New Added 11-12-14 for wordpress integration
+
+class { 'apache2::install': }
+class { 'php5::install': }
+class { 'wordpress::install': }
+class { 'phpmyadmin::install': }
+
