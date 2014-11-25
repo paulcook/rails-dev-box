@@ -1,4 +1,4 @@
-$ar_databases = ['activerecord_unittest', 'activerecord_unittest2','ringside_development']
+$ar_databases = ['activerecord_unittest', 'activerecord_unittest2','osif_store_development','osif_store_test']
 $as_vagrant   = 'sudo -u vagrant -H bash -l -c'
 $home         = '/home/vagrant'
 
@@ -24,43 +24,6 @@ class apt_get_update {
 class { 'apt_get_update':
   stage => preinstall
 }
-
-# --- SQLite -------------------------------------------------------------------
-
-package { ['sqlite3', 'libsqlite3-dev']:
-  ensure => installed;
-}
-
-# --- MySQL --------------------------------------------------------------------
-
-class install_mysql {
-  class { 'mysql': }
-
-  class { 'mysql::server':
-    config_hash => { 'root_password' => '' }
-  }
-
-  database { $ar_databases:
-    ensure  => present,
-    charset => 'utf8',
-    require => Class['mysql::server']
-  }
-
-  database_user { 'rails@localhost':
-    ensure  => present,
-    require => Class['mysql::server']
-  }
-
-  database_grant { ['rails@localhost/activerecord_unittest', 'rails@localhost/activerecord_unittest2', 'rails@localhost/inexistent_activerecord_unittest']:
-    privileges => ['all'],
-    require    => Database_user['rails@localhost']
-  }
-
-  package { 'libmysqlclient15-dev':
-    ensure => installed
-  }
-}
-class { 'install_mysql': }
 
 # --- PostgreSQL ---------------------------------------------------------------
 

@@ -1,3 +1,4 @@
 .vagrant
 rails
-RingSide
+osif_store
+spree_extensions/*
