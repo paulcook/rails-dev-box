@@ -1,0 +1,5 @@
+Host ringsidedev
+HostName 23.253.159.79
+User webapp
+IdentityFile /home/vagrant/.ssh/id_rsa
+

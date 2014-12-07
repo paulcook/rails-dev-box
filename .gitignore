@@ -1,4 +1,9 @@
 .vagrant
 rails
+<<<<<<< HEAD
 RingSide
 wordpress
+=======
+osif_store
+spree_extensions/*
+>>>>>>> cd73c12a7b8ec56b66a6bac56f98754ce6988b7b
